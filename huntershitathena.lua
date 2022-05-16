@@ -201,11 +201,25 @@ farm.Toggle({
 farm.Toggle({
     Text = "Ren Farm",
     Callback = function(value)
-        Settings.nenfarm = value
+        Settings.renfarm = value
         pcall(function()
-            while Settings.nenfarm do task.wait()
+            while Settings.renfarm do task.wait()
                 if not game:GetService("Workspace").Living[plr.Name].Torso:FindFirstChild("Aura") then
                     game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("V")
+                end
+            end
+        end)
+    end
+})
+
+farm.Toggle({
+    Text = "Ten Farm",
+    Callback = function(value)
+        Settings.tenfarm = value
+        pcall(function()
+            while Settings.tenfarm do task.wait()
+                if not game:GetService("Workspace").Living[plr.Name].Torso:FindFirstChild("Aura") then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("B")
                 end
             end
         end)
