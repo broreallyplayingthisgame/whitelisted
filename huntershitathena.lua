@@ -210,6 +210,22 @@ farm.Toggle({
     end
 })
 
+farm.Toggle({
+    Text = "Eat Food on Low Hunger",
+    Callback = function(value)
+        Settings.autoeat = value
+        while Settings.autoeat do task.wait()
+            if game:GetService("Players").LocalPlayer.PlayerGui.CoreGUI.Images.Hunger.AbsoluteSize <= 50 then
+                fireclickdetector(game:GetService("Workspace").Food.Meat["Meat - 200 Jeni"].Head.ClickDetector)
+                task.wait(.1)
+                game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack.Meat)
+                task.wait(.1)
+                game.Players.LocalPlayer.Character.Meat:Activate()
+            end
+        end
+    end
+})
+
 -- // Credits \\ -- 
 cred.Button({
     Text = "Scripter | afy#0679",
