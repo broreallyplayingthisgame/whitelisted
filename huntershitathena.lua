@@ -191,22 +191,22 @@ farm.Toggle({
     Text = "Auto Push-up (rejoin if it kicks you, does nothing)",
     Callback = function(value)
         Settings.pushup = value
-        pcall(function()
-            while Settings.pushup do task.wait()
-                if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                    task.wait(.4)
-                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
-                    task.wait(.4)
-                end
-                if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
-                    task.wait()
-                elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                    task.wait(math.random(.5,.8))
-                    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode[game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text], false, game)
-                    game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.RemoteEvent:FireServer()
-                end
+        while Settings.pushup do task.wait()
+            if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
+                task.wait(.4)
+                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
+                task.wait(.4)
             end
-        end)
+            if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
+                task.wait()
+            elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
+                task.wait(math.random(.5,.8))
+                if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode[game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text], false, game)
+                end
+                game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.RemoteEvent:FireServer()
+            end
+        end
     end
 })
 
