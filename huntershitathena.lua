@@ -193,18 +193,18 @@ farm.Toggle({
         Settings.pushup = value
         while Settings.pushup do task.wait()
             if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                task.wait(.4)
+                task.wait(.2)
                 game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
-                task.wait(.4)
+                task.wait(.2)
             end
-            if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
-                task.wait()
-            elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                task.wait(math.random(.5,.8))
-                if not game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text == "..." then
-                    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode[game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text], false, game)
+            if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
+                if game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui:FindFirstChild("Pushups") then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text == "..." then
+                        task.wait()
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode[game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text], false, game)
+                    end
                 end
-                game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.RemoteEvent:FireServer()
             end
         end
     end
