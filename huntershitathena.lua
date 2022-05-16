@@ -139,7 +139,9 @@ farm.Toggle({
         Settings.staminafarm = value
         pcall(function()
             while Settings.staminafarm do task.wait()
-                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("ClimbStart")
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.Stamina.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("ClimbStart")
+                end
             end
         end)
     end
@@ -163,8 +165,9 @@ farm.Toggle({
         Settings.runspam = value
         pcall(function()
             while Settings.runspam do task.wait()
-                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintStart")
-                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintEnd")
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.Stamina.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintStart")
+                end
             end
         end)
     end
