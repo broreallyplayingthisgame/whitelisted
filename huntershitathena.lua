@@ -113,6 +113,7 @@ end)
 
 -- // Test \\ -- 
 local farm = UI.New({Title = "Farming"})
+local aura = UI.New({Title = "Nen Farms"})
 local cred = UI.New({Title = "Credits"})
 farm.Toggle({
     Text = "Auto leave when mods join.",
@@ -129,21 +130,6 @@ farm.Button({
     Text = "Teleport high.",
     Callback = function()
         tphigh()
-    end
-})
-farm.Button({
-    Text = "Inf stamina & infinite nen stamina.",
-    Callback = function()
-        local old
-        old = hookmetamethod(game, "__index", function(self, v)
-            if tostring(self) == "Stamina" and v == "Value" then
-                return 100
-            end
-            if tostring(self) == "NenStam" and v == "Value" then
-                return 100
-            end
-            return old(self, v)
-        end)
     end
 })
 
@@ -184,42 +170,99 @@ farm.Toggle({
     end
 })
 
-farm.Toggle({
+aura.Toggle({
     Text = "Nen Farm",
     Callback = function(value)
         Settings.nenfarm = value
         pcall(function()
             while Settings.nenfarm do task.wait()
-                if not game:GetService("Workspace").Living[plr.Name].Torso:FindFirstChild("Aura") then
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
                     game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("N")
+                    task.wait(1)
                 end
             end
         end)
     end
 })
-
-farm.Toggle({
-    Text = "Ren Farm",
-    Callback = function(value)
-        Settings.renfarm = value
-        pcall(function()
-            while Settings.renfarm do task.wait()
-                if not game:GetService("Workspace").Living[plr.Name].Torso:FindFirstChild("Aura") then
-                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("V")
-                end
-            end
-        end)
-    end
-})
-
-farm.Toggle({
+aura.Toggle({
     Text = "Ten Farm",
     Callback = function(value)
         Settings.tenfarm = value
         pcall(function()
             while Settings.tenfarm do task.wait()
-                if not game:GetService("Workspace").Living[plr.Name].Torso:FindFirstChild("Aura") then
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
                     game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("B")
+                    task.wait(1)
+                end
+            end
+        end)
+    end
+})
+aura.Toggle({
+    Text = "Ren Farm",
+    Callback = function(value)
+        Settings.renfarm = value
+        pcall(function()
+            while Settings.renfarm do task.wait()
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("V")
+                    task.wait(1)
+                end
+            end
+        end)
+    end
+})
+aura.Toggle({
+    Text = "Zetsu Farm",
+    Callback = function(value)
+        Settings.zetsufarm = value
+        pcall(function()
+            while Settings.zetsufarm do task.wait()
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("C")
+                    task.wait(1)
+                end
+            end
+        end)
+    end
+})
+aura.Toggle({
+    Text = "Ko Farm",
+    Callback = function(value)
+        Settings.kofarm = value
+        pcall(function()
+            while Settings.kofarm do task.wait()
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("X")
+                    task.wait(1)
+                end
+            end
+        end)
+    end
+})
+aura.Toggle({
+    Text = "Gyo Farm",
+    Callback = function(value)
+        Settings.gyofarm = value
+        pcall(function()
+            while Settings.gyofarm do task.wait()
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("G")
+                    task.wait(1)
+                end
+            end
+        end)
+    end
+})
+aura.Toggle({
+    Text = "In Farm",
+    Callback = function(value)
+        Settings.infarm = value
+        pcall(function()
+            while Settings.infarm do task.wait()
+                if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.NenStam.Value == 100 then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("Z")
+                    task.wait(1)
                 end
             end
         end)
