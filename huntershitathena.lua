@@ -64,7 +64,7 @@ function tphigh()
         baseplate.Size = Vector3.new(100,5,100)
         baseplate.Anchored = true
         baseplate.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,211111,0)
-    game:GetService("Workspace")[plr.Name].HumanoidRootPart.CFrame = game:GetService("Workspace").Base.CFrame
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Base.CFrame
 end
 local function newSound()
     local Sound = Instance.new("Sound", game.Players.LocalPlayer.PlayerGui)
@@ -201,8 +201,7 @@ farm.Toggle({
                 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
                     task.wait()
                 elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                    task.wait(math.random(0.5,0.8))
-                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer(game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text)
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode[game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text], false, game)
                     game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.RemoteEvent:FireServer()
                 end
             end
