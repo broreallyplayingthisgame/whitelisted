@@ -114,13 +114,7 @@ end)
 -- // Test \\ -- 
 local farm = UI.New({Title = "Farming"})
 local cred = UI.New({Title = "Credits"})
-farm.Button({
-    Text = "Teleport high.",
-    Callback = function()
-        tphigh()
-    end
-})
-farm.Button({
+farm.Toggle({
     Text = "Auto leave when mods join.",
     Callback = function(value)
         Settings.modjoined = value
@@ -129,6 +123,12 @@ farm.Button({
                 game.Players.LocalPlayer:Kick()
             end
         end)
+    end
+})
+farm.Button({
+    Text = "Teleport high.",
+    Callback = function()
+        tphigh()
     end
 })
 farm.Button({
