@@ -91,6 +91,7 @@ farm.Toggle({
         pcall(function()
             while Settings.runspam do task.wait()
                 game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("SprintStart")
+                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintStart")
             end
         end)
     end
