@@ -57,7 +57,15 @@ local Mods = { -- not all of the mods
     ["Poor_Dev"] = true,
     ["9sxuIs"] = true,
 }
-
+function tphigh()
+    local baseplate = Instance.new("Part")
+        baseplate.Parent = workspace
+        baseplate.Name = "Base"
+        baseplate.Size = Vector3.new(100,5,100)
+        baseplate.Anchored = true
+        baseplate.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,211111,0)
+    game:GetService("Workspace")[plr.Name].HumanoidRootPart.CFrame = game:GetService("Workspace").Base.CFrame
+end
 local function newSound()
     local Sound = Instance.new("Sound", game.Players.LocalPlayer.PlayerGui)
     Sound.SoundId = "rbxassetid://138081500"
@@ -106,6 +114,12 @@ end)
 -- // Test \\ -- 
 local farm = UI.New({Title = "Farming"})
 local cred = UI.New({Title = "Credits"})
+farm.Button({
+    Text = "Teleport Really High for safe farm",
+    Callback = function()
+        tphigh()
+    end
+})
 farm.Button({
     Text = "Inf Stamina + NenStam",
     Callback = function()
@@ -187,7 +201,7 @@ farm.Toggle({
                 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
                     task.wait()
                 elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                    task.wait(0.6)
+                    task.wait(math.random(0.5,0.8))
                     game:GetService("Players").LocalPlayer.Character.Character.input:FireServer(game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text)
                     game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.RemoteEvent:FireServer()
                 end
