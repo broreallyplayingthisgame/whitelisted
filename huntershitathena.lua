@@ -115,9 +115,19 @@ end)
 local farm = UI.New({Title = "Farming"})
 local cred = UI.New({Title = "Credits"})
 farm.Button({
-    Text = "Teleport Really High for safe farm",
+    Text = "Tp High",
     Callback = function()
         tphigh()
+    end
+})
+farm.Button({
+    Text = "Auto Leave when mods join",
+    Callback = function()
+        game.Players.PlayerRemoving:connect(function(Player)
+            if Mods[Player.Name] then
+                game.Players.LocalPlayer.Character.Humanoid:Kick()
+            end
+        end)
     end
 })
 farm.Button({
