@@ -40,6 +40,68 @@ local plr       = game.Players.LocalPlayer
 local chr       = plr.Character or plr.CharacterAdded:Wait()
 local rootPart  = chr.HumanoidRootPart or chr:WaitForChild("HumanoidRootPart")
 local Settings  = {}
+local Mods = { -- not all of the mods
+    ["ImKalluto"] = true,
+    ["FlitzZO"] = true,
+    ["MysticIsOnline"] = true,
+    ["lup2x"] = true,
+    ["TheBossOfPain"] = true,
+    ["GoodShotsDrop"] = true,
+    ["RARITYDEMONSL"] = true,
+    ["Ruben383736"] = true,
+    ["Spaceyuu"] = true,
+    ["xNoahW"] = true,
+    ["Ew_Yum"] = true,
+    ["Escanorr"] = true,
+    ["Neverage119"] = true,
+    ["Poor_Dev"] = true,
+    ["9sxuIs"] = true,
+}
+
+local function newSound()
+    local Sound = Instance.new("Sound", game.Players.LocalPlayer.PlayerGui)
+    Sound.SoundId = "rbxassetid://138081500"
+    Sound.Volume = 5
+    Sound:Play()
+    Sound.Ended:connect(function()
+        Sound:Destroy()
+    end)
+end
+
+for k,v in pairs(game.Players:GetChildren()) do
+    if Mods[v.Name] then
+        newSound()
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+           Title = "Mod detected!",
+           Text = v.Name,
+           Duration = 10,
+           Button1 = "Close"
+        })
+    end
+end
+
+game.Players.PlayerAdded:connect(function(Player)
+    if Mods[Player.Name] then
+        newSound()
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+           Title = "Mod detected!",
+           Text = Player.Name,
+           Duration = 10,
+           Button1 = "Close"
+        })
+    end
+end)
+
+game.Players.PlayerRemoving:connect(function(Player)
+    if Mods[Player.Name] then
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+           Title = "Mod left!",
+           Text = Player.Name,
+           Duration = 10,
+           Button1 = "Close"
+        })
+    end
+end)
 
 -- // Test \\ -- 
 local farm = UI.New({Title = "Farming"})
@@ -112,7 +174,7 @@ farm.Toggle({
 })
 
 farm.Toggle({
-    Text = "Auto Push-up",
+    Text = "Auto Push-up (rejoin if it kicks you, does nothing)",
     Callback = function(value)
         Settings.pushup = value
         pcall(function()
