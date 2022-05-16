@@ -122,9 +122,10 @@ farm.Button({
 })
 farm.Button({
     Text = "Auto Leave when mods join",
-    Callback = function()
+    Callback = function(value)
+        Settings.modleave = value
         game.Players.PlayerRemoving:connect(function(Player)
-            if Mods[Player.Name] then
+            if Mods[Player.Name] and Settings.modleave then
                 game.Players.LocalPlayer.Character.Humanoid:Kick()
             end
         end)
