@@ -115,24 +115,24 @@ end)
 local farm = UI.New({Title = "Farming"})
 local cred = UI.New({Title = "Credits"})
 farm.Button({
-    Text = "Tp High",
+    Text = "Teleport high.",
     Callback = function()
         tphigh()
     end
 })
 farm.Button({
-    Text = "Auto Leave when mods join",
+    Text = "Auto leave when mods join.",
     Callback = function(value)
-        Settings.modleave = value
-        game.Players.PlayerRemoving:connect(function(Player)
-            if Mods[Player.Name] and Settings.modleave then
-                game.Players.LocalPlayer.Character.Humanoid:Kick()
+        Settings.modjoined = value
+        game.Players.PlayerAdded:connect(function(Player)
+            if Mods[Player.Name] and Settings.modjoined then
+                game.Players.LocalPlayer:Kick()
             end
         end)
     end
 })
 farm.Button({
-    Text = "Inf Stamina + NenStam",
+    Text = "Inf stamina & infinite nen stamina.",
     Callback = function()
         local old
         old = hookmetamethod(game, "__index", function(self, v)
