@@ -161,20 +161,20 @@ farm.Toggle({
 })
 
 farm.Toggle({
-    Text = "Run Farm",
+    Text = "Run Farm (Run EXP)",
     Callback = function(value)
         Settings.runspam = value
         pcall(function()
             while Settings.runspam do task.wait()
-                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("SprintStart")
                 game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintStart")
+                game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintEnd")
             end
         end)
     end
 })
 
 farm.Toggle({
-    Text = "Farm Nen",
+    Text = "Nen Farm",
     Callback = function(value)
         Settings.nenfarm = value
         pcall(function()
@@ -188,7 +188,21 @@ farm.Toggle({
 })
 
 farm.Toggle({
-    Text = "Auto Push-up (rejoin if it kicks you, does nothing)",
+    Text = "Ren Farm",
+    Callback = function(value)
+        Settings.nenfarm = value
+        pcall(function()
+            while Settings.nenfarm do task.wait()
+                if not game:GetService("Workspace").Living[plr.Name].Torso:FindFirstChild("Aura") then
+                    game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("V")
+                end
+            end
+        end)
+    end
+})
+
+farm.Toggle({
+    Text = "Auto Push-up",
     Callback = function(value)
         Settings.pushup = value
         while Settings.pushup do task.wait()
@@ -217,11 +231,11 @@ farm.Toggle({
     Callback = function(value)
         Settings.autoeat = value
         while Settings.autoeat do task.wait()
-            if game:GetService("Players").LocalPlayer.PlayerGui.CoreGUI.Images.Hunger.AbsoluteSize <= 50 then
+            if game:GetService("Players").LocalPlayer.PlayerGui.CoreGUI.Images.Hunger.Size.X.Scale <= 0.5 then
                 fireclickdetector(game:GetService("Workspace").Food.Meat["Meat - 200 Jeni"].Head.ClickDetector)
-                task.wait(.1)
+                task.wait(.2)
                 game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack.Meat)
-                task.wait(.1)
+                task.wait(.2)
                 game.Players.LocalPlayer.Character.Meat:Activate()
             end
         end
