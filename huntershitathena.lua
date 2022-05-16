@@ -121,7 +121,7 @@ farm.Toggle({
         Settings.modjoined = value
         game.Players.PlayerAdded:connect(function(Player)
             if Mods[Player.Name] and Settings.modjoined then
-                game.Players.LocalPlayer:Kick("A mod, "Player.Name .." has joined the game")
+                game.Players.LocalPlayer:Kick("A mod has joined the game")
             end
         end)
     end
