@@ -201,6 +201,7 @@ farm.Toggle({
                 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui"):FindFirstChild("Pushups").Button.Text == "..." then
                     task.wait()
                 elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
+                    task.wait(math.random(.5,.8))
                     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode[game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text], false, game)
                     game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.RemoteEvent:FireServer()
                 end
