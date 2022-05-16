@@ -277,7 +277,6 @@ farm.Toggle({
     Callback = function(value)
         Settings.pushup = value
         while Settings.pushup do task.wait()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
             if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
                 task.wait(.2)
                 game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
@@ -292,10 +291,18 @@ farm.Toggle({
                     end
                 end
             end
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
         end
     end
 })
+spawn(function()
+    while task.wait() do
+        if Settings.pushup then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+        else
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        end
+    end
+end)
 
 farm.Toggle({
     Text = "Eat Food on Low Hunger",
