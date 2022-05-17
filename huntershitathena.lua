@@ -120,8 +120,13 @@ farm.Toggle({
     Callback = function(value)
         Settings.modjoined = value
         game.Players.PlayerAdded:connect(function(Player)
+            for k,v in pairs(game.Players:GetChildren()) do
+                if Mods[v.Name] and Settings.modjoined then
+                    game.Players.LocalPlayer:Kick("A mod ("..v.Name..") was in your game")
+                end
+            end
             if Mods[Player.Name] and Settings.modjoined then
-                game.Players.LocalPlayer:Kick("A mod has joined the game")
+                game.Players.LocalPlayer:Kick("A mod ("..Player.Name..") has joined the game")
             end
         end)
     end
@@ -287,7 +292,14 @@ farm.Toggle({
                     if game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text == "..." then
                         task.wait()
                     elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                        game:GetService("VirtualInputManager"):SendKeyEvent(true, game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text, false, game)
+                        if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.Stamina.Value == 0 then
+                            repeat
+                                task.wait()
+                            until game:GetService("Workspace").Living[plr.Name].Humanoid.Info.Stamina.Value == 100
+                        end
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text, false, game)
+                        game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintEnd")
+                        game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("SprintEnd")
                     end
                 end
             end
