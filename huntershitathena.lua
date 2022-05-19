@@ -283,9 +283,9 @@ farm.Toggle({
         Settings.pushup = value
         while Settings.pushup do task.wait()
             if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
-                task.wait(.2)
+                task.wait(.4)
                 game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
-                task.wait(.2)
+                task.wait(.4)
             end
             if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
                 if game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui:FindFirstChild("Pushups") then
@@ -293,13 +293,17 @@ farm.Toggle({
                         task.wait()
                     elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
                         if game:GetService("Workspace").Living[plr.Name].Humanoid.Info.Stamina.Value == 0 then
+                            game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
                             repeat
                                 task.wait()
                             until game:GetService("Workspace").Living[plr.Name].Humanoid.Info.Stamina.Value == 100
+                            game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("J")
                         end
+                        if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PushupsGui") then
                             game:GetService("VirtualInputManager"):SendKeyEvent(true, game:GetService("Players").LocalPlayer.PlayerGui.PushupsGui.Pushups.Button.Text, false, game)
-                        game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintEnd")
-                        game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("SprintEnd")
+                            game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("SprintEnd")
+                            game:GetService("Players").LocalPlayer.Character.Character.input:FireServer("FastSprintEnd")
+                        end
                     end
                 end
             end
